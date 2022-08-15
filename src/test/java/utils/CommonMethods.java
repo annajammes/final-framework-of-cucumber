@@ -98,6 +98,15 @@ public static void selectDropdown(WebElement element,String text){
         Actions action = new Actions(driver);
         action.moveToElement(element).build().perform();
     }
+
+    public static  void switchToFrame(int index) {
+        try {
+            driver.switchTo().frame(index);
+        }
+        catch (NoSuchFrameException e) {
+            e.printStackTrace();
+        }
+    }
     public static void close (){
         if(driver!=null){
             driver.quit();
