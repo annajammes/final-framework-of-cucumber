@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -82,6 +83,21 @@ public static void selectDropdown(WebElement element,String text){
     Select s=new Select(element);
     s.selectByVisibleText(text);
 }
+    public static void selecWithValue(WebElement element,String value){
+        Select s=new Select(element);
+        s.selectByValue(value);
+    }
+    public static void scrollWebsiteWindow(int x,int y){
+
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy("+ x +","+ y +")");
+
+    }
+
+    public static void moveToElement(WebElement element){
+        Actions action = new Actions(driver);
+        action.moveToElement(element).build().perform();
+    }
     public static void close (){
         if(driver!=null){
             driver.quit();
