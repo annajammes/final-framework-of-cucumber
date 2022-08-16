@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class CommonMethods extends PageInitalizer {
@@ -105,6 +107,23 @@ public static void selectDropdown(WebElement element,String text){
         }
         catch (NoSuchFrameException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void handelMultipleWindows(){
+        String mainPage=driver.getWindowHandle();
+        Set<String> allWindowsHandels =driver.getWindowHandles();
+        Iterator<String> it=  allWindowsHandels.iterator();
+        while (it.hasNext()){
+            String handel =it.next();
+            if(!mainPage.equals(handel))
+            {
+                driver.switchTo().window(handel);
+
+                System.out.println(driver.switchTo().window(handel).getTitle());
+
+                driver.close();
+            }
         }
     }
     public static void close (){
